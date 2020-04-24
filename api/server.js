@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const data = require('./data');
 const middleware = require('./middleware');
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb+srv://Admin:Admin@123.@shopping-cart-cluster-dremn.mongodb.net/shopping-cart?retryWrites=true&w=majority";
+const url = "mongodb+srv://tetet.@shopping-cart-cluster-dremn.mongodb.net/shopping-cart?retryWrites=true&w=majority";
 
 
 app.use(bodyParser.json());

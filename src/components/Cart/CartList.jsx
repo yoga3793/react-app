@@ -14,9 +14,17 @@ export class CartList extends Component {
 
 
 	componentWillMount() {
-		let cart = localStorage.getItem('cart');
-		if (!cart) return; 
+      let cart = {};
+      let quickCart  = localStorage.getItem('quick-cart');
+          if(quickCart){
+            cart = quickCart;
+            // localStorage.removeItem('quick-cart');
+          } else {
+            cart = localStorage.getItem('cart');
+          }
+      if (!cart) return; 
 		getCartProducts(cart).then((products) => {
+         console.log(products);
          let totalPrice = 0;
          let totalCount = 0;
 			for (var i = 0; i < products.length; i++) {
@@ -29,19 +37,20 @@ export class CartList extends Component {
 
 	removeFromCart = (product) => {
       debugger;
-		let products = this.state.products.filter((item) => item.id !== product.id);
+		let products = this.state.products.filter((item) => item._id !== product._id);
 		let cart = JSON.parse(localStorage.getItem('cart'));
-		delete cart[product.id.toString()];
+		delete cart[product._id.toString()];
 		localStorage.setItem('cart', JSON.stringify(cart));
 		let totalPrice = this.state.totalPrice - (product.qty * product.price) ;
 		let totalCount = this.state.totalCount - product.qty; 
       this.setState({products, totalPrice,totalCount});
+      localStorage.removeItem('quick-cart');
    }
    
    // addToCart = product => {
-   //    let products = this.state.products.filter((item) => item.id !== product.id);
+   //    let products = this.state.products.filter((item) => item._id !== product._id);
 	// 	let cart = JSON.parse(localStorage.getItem('cart'));
-	// 	cart[product.id.toString()];
+	// 	cart[product._id.toString()];
 	// 	localStorage.setItem('cart', JSON.stringify(cart));
 	// 	let totalPrice = this.state.totalPrice - (product.qty * product.price) ;
 	// 	let totalCount = this.state.totalCount - product.qty; 
@@ -49,13 +58,25 @@ export class CartList extends Component {
    // }
 
 	clearCart = () => {
-		localStorage.removeItem('cart');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('quick-cart');
 		this.setState({products: [] , totalCount : 0});
    }
    
    render() {
       const { products, totalPrice,totalCount } =  this.state;
       return (
+         <div>
+			
+			<div className="products-breadcrumb fixed-top">
+				<div className="container">
+					<ul className="mb-0">
+						<li><i className="fa fa-home" aria-hidden="true"></i>
+						<a href="/">Home</a><span>|</span></li>
+						<li>Cart</li>
+					</ul>
+				</div>
+			</div> 
    <div className="wrapper wrapper-content animated fadeInRight">
       <div className="row">
          <div className={ products.length  ? 'col-lg-9 col-12': 'col-12'}>
@@ -77,7 +98,7 @@ export class CartList extends Component {
                :
                <div className="ibox-content"> 
                <div className="">
-               <Link to="/" className="btn btn-sm btn-success"><i className="fa fa-arrow-left"></i> Continue shopping</Link>
+               <Link to="/" className="btn btn-sm btn-success"><i className="fa fa-arrow-left" onClick={() =>  localStorage.removeItem('quick-cart') }></i> Continue shopping</Link>
                <Link to="/checkout" className="btn btn-primary btn-sm float-right"><i className="fa fa fa-shopping-cart"></i> Checkout</Link> 
                </div>
                </div>
@@ -109,7 +130,7 @@ export class CartList extends Component {
         </div>
    </div>
        
-      )
+     </div> )
    }
 }
 

@@ -91,3 +91,8 @@ table.shoping-cart-table tr td:last-child {
   background: #ffffff;
   padding: 10px 15px;
 }
+
+.pro-img-list img {
+  width: 65px;
+  height: 65px;
+}

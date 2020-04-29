@@ -7,8 +7,8 @@ export class Register extends Component {
     gotoLogin: false,
     username: "",
     email: "",
-    password: "",
-    cPassword:""
+    phone:"",
+    password: ""   
 
   };
 
@@ -32,6 +32,7 @@ export class Register extends Component {
     const user = {
       name: this.state.username,
       email: this.state.email,
+      phone: this.state.phone,
       password: this.state.password
     };
 
@@ -49,8 +50,10 @@ export class Register extends Component {
     return (
       <div>
         <section className="form form-register animated flipInX">
+        <div className="form-inline">
           <img src="../logo/logo.png" className="aligncenter logo" />
-          <h2>Register Account</h2>
+          <h2 className="m-0">Register Account</h2>
+          </div>          
           <p className="valid">Valid. Please wait a moment.</p>
           <p className="error">
             Error. Please enter correct Username &amp; password.
@@ -58,15 +61,12 @@ export class Register extends Component {
           <form className="loginbox" autocomplete="off" onSubmit={this.onSubmit}>
             <input placeholder="Username" type="text" name="username" value={this.state.username} onChange={this.onChange}></input>
             <input placeholder="Email" type="email" name="email" value={this.state.email} onChange={this.onChange}></input>
+            <input placeholder="Phone Number" type="tel" name="phone" value={this.state.phone} onChange={this.onChange}></input>
             <input placeholder="Password" type="password" name="password" value={this.state.password} onChange={this.onChange}></input>
-            <input
-              placeholder="Confirm Password"
-              type="password"
-              name="cPassword"
-            ></input>
-            <button id="submit" type="submit">Register</button>
+            
+            <button id="submit" type="submit" className="btn-login">Register</button>
           </form>
-          <p className="change_link">
+          <p className="change_link m-0 mt-1 ">
             Already a member ?
             <a onClick={this.redirectLogin} href="javascript:void(0)" className="to_register"> Sign In</a>
           </p>

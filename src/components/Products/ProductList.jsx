@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ProductItem } from "./index";
 import { getProducts } from '../../services/index';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export class ProductList extends Component {
     state = {
@@ -17,16 +18,25 @@ export class ProductList extends Component {
 	render() {
 		const { products } =  this.state;
 		return (
+			<div>
+			
+			<div className="products-breadcrumb fixed-top">
+				<div className="container">
+					<ul className="mb-0">
+						<li><i className="fa fa-home" aria-hidden="true"></i>
+						<a href="/">Home</a><span>|</span></li>
+						<li>Products List</li>
+					</ul>
+				</div>
+			</div>
 			<div className=" container">
-				<h3 className="card-title text-light">List of Available Products</h3>
-				<hr/>
+				{/* <h3 className="card-title text-light">List of Products</h3> */}
+				{/* <hr/> */}
 				<div className="card-columns">
                     {products.map((product, index) => <ProductItem product={product} key={index}/>)}
 				</div>
-				<hr/>
-				<Link to="/checkout"><button className="btn btn-success float-right">Checkout</button></Link>
-				<Link to="/cart"><button className="btn btn-primary float-right" style={{  marginRight: "10px" }}>View Cart</button></Link>
-				<br/><br/><br/>
+				
+			</div>
 			</div>
 		);
 	}

@@ -7,7 +7,8 @@ export const register = newUser => {
   return axios
     .post(`${baseUrl}/api/register`, {
 		name: newUser.name,
-      email: newUser.email,
+	  email: newUser.email,
+	  phone: newUser.phone,
       password: newUser.password
     })
 	.then(response => {
@@ -38,10 +39,17 @@ export const getProducts = () => {
 		.then(response => response.data);
 }
 
-export const getCartProducts = user => {
-	return axios.post(`${baseUrl}/api/get-cart`, {user_id: user})
+export const getProduct= pid => {
+	console.log(pid);
+	return axios.post(`${baseUrl}/api/product/`, {product_id : pid})
 		.then(response => response.data);
 }
+
+export const getCartProducts = cart => {
+	return axios.post(`${baseUrl}/api/get-cart`, {cart})
+		.then(response => response.data);
+}
+
 
 export const updateCartProducts = cart => {
 	return axios.post(`${baseUrl}/api/update-cart`, {cart})

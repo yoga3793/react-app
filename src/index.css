@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.products-breadcrumb {
+  padding: 5px;
+  background: #ffdc4ed1;
+  margin-top: 60px;
+}
+.products-breadcrumb ul li {
+  display: inline-block;
+  color: #212121;
+  font-family: 'Ubuntu', sans-serif !important;
+  margin-right: 8px;
+}
+
+.products-breadcrumb ul li a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 13px;
+}

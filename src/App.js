@@ -10,6 +10,7 @@ export class App extends Component {
 state = {
   totalCount : 0
 }
+//yoga test
 
 //   componentWillMount() {
 //     let cart = localStorage.getItem('cart');
